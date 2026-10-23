@@ -1,7 +1,7 @@
 /**
  * KOREB — Natural Cosmetics
  * src/components/Footer.jsx
- * Minimalist site footer with KOREB brand mark and Instagram handle.
+ * Minimalist site footer with KOREB brand mark and contact phone number.
  */
 
 import React from 'react';
@@ -11,12 +11,10 @@ export default function Footer() {
     <footer className="site-footer">
       <span className="footer-brand">KOREB</span>
       <a
-        href="https://instagram.com/yamy16082"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="tel:+251924249494"
         className="footer-handle"
       >
-        @yamy16082
+        +251 924 249 494
       </a>
     </footer>
   );

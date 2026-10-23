@@ -53,6 +53,7 @@
     margin: 0 auto 2.25rem;
 }
 
+.contact-button,
 .ig-button {
     display: inline-flex;
     align-items: center;
@@ -70,12 +71,14 @@
     box-shadow: 0 12px 32px rgba(214, 154, 56, 0.32);
 }
 
+.contact-button:hover,
 .ig-button:hover {
     background: #e3a846;
     transform: translateY(-2px);
     box-shadow: 0 16px 38px rgba(214, 154, 56, 0.45);
 }
 
+.contact-button svg,
 .ig-button svg {
     width: 20px;
     height: 20px;
