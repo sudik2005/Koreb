@@ -23,6 +23,7 @@ export default function FloatingWords({ chapters, parallaxRefs }) {
               key={i}
               className="floating-item"
               style={{ '--x': item.x, '--y': item.y }}
+              data-side={parseFloat(item.x) < 40 ? 'left' : parseFloat(item.x) > 60 ? 'right' : 'center'}
               data-speed={item.speed}
               data-threshold={item.threshold}
             >

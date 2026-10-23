@@ -68,6 +68,22 @@
         line-height: 1.5;
     }
 
+    /* Keep floating pills fully on screen: pin them to the column edges instead of centering on x */
+    .parallax-field {
+        inset: -4% 0;
+    }
+
+    .floating-item[data-side="left"] {
+        --shift: 0%;
+        left: 12px;
+    }
+
+    .floating-item[data-side="right"] {
+        --shift: 0%;
+        left: auto;
+        right: 0;
+    }
+
     .floating-word {
         font-size: 0.96rem;
         padding: 0.2rem 0.65rem;

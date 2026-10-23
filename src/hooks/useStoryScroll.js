@@ -200,7 +200,7 @@ export function useStoryScroll({
                 : (0.5 - localP) * 95 * speed;
 
               el.style.opacity = (itemReveal * weight).toFixed(3);
-              el.style.transform = `translate3d(-50%, ${driftY.toFixed(1)}px, 0)`;
+              el.style.transform = `translate3d(var(--shift, -50%), ${driftY.toFixed(1)}px, 0)`;
             });
           }
         }
