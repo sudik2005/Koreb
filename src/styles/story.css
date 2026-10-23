@@ -1,0 +1,366 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/story.css
+ * Pinned story stage, progress rail, chapter dots, radial glow layers,
+ * background video layers, product frame, typography, and parallax floating words/cutouts.
+ */
+
+/* ==========================================================================
+   2. SCROLL-DRIVEN STORY (500vh Pinned Stage)
+   ========================================================================== */
+.story-track {
+    position: relative;
+    width: 100%;
+    height: 550vh;
+    /* 5 chapters + comfortable reading dwell */
+}
+
+.story-stage {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--rosemary-night);
+}
+
+/* Thin amber progress line on the far left edge */
+.progress-rail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: rgba(239, 230, 212, 0.08);
+    z-index: 45;
+}
+
+.progress-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--amber) 0%, #f0be67 100%);
+    transform-origin: top center;
+    transform: scaleY(0);
+    box-shadow: 0 0 16px rgba(214, 154, 56, 0.65);
+    will-change: transform;
+}
+
+/* Subtle interactive chapter dots beside the left rail */
+.chapter-dots {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 45;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.chapter-dot-btn {
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.chapter-dot-btn span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(239, 230, 212, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chapter-dot-btn.is-active span {
+    background: var(--amber);
+    transform: scale(1.65);
+    box-shadow: 0 0 10px rgba(214, 154, 56, 0.75);
+}
+
+.chapter-dot-btn:hover span {
+    background: var(--linen);
+}
+
+/* Crossfading Radial Background Glow Layers */
+.glow-layers,
+.bg-video-layers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.glow-layers {
+    z-index: 1;
+}
+
+.glow-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.glow-layer[data-chapter="0"] {
+    background:
+        radial-gradient(62% 68% at 70% 50%, rgba(158, 97, 46, 0.42) 0%, rgba(58, 38, 24, 0.24) 48%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+.glow-layer[data-chapter="1"] {
+    background:
+        radial-gradient(62% 68% at 70% 50%, rgba(173, 102, 121, 0.38) 0%, rgba(74, 44, 53, 0.25) 48%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+.glow-layer[data-chapter="2"] {
+    background:
+        radial-gradient(62% 68% at 70% 50%, rgba(204, 146, 44, 0.40) 0%, rgba(77, 56, 22, 0.26) 48%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+.glow-layer[data-chapter="3"] {
+    background:
+        radial-gradient(62% 68% at 70% 50%, rgba(214, 134, 52, 0.42) 0%, rgba(82, 52, 24, 0.26) 48%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+.glow-layer[data-chapter="4"] {
+    background:
+        radial-gradient(62% 68% at 70% 50%, rgba(114, 145, 76, 0.36) 0%, rgba(37, 51, 31, 0.28) 48%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+/* Ambient Chapter Background Videos */
+.bg-video-layers {
+    z-index: 2;
+}
+
+.chapter-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    mix-blend-mode: screen;
+    filter: blur(1px) saturate(1.1);
+    will-change: opacity;
+}
+
+.stage-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        radial-gradient(85% 85% at 50% 50%, transparent 30%, rgba(18, 27, 21, 0.78) 100%),
+        linear-gradient(90deg, rgba(18, 27, 21, 0.82) 0%, rgba(18, 27, 21, 0.28) 52%, rgba(18, 27, 21, 0.72) 100%);
+}
+
+/* Main Stage Grid: Left Copy, Right Product Frame + Parallax Orbit */
+.stage-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1340px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 4.5rem 4rem 3.5rem 5rem;
+    display: grid;
+    grid-template-columns: minmax(300px, 5fr) minmax(360px, 7fr);
+    align-items: center;
+    gap: 3.5rem;
+}
+
+/* Left Column: Product Text Chapters */
+.copy-column {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+}
+
+.chapter-copy {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(28px);
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+
+.chapter-copy.is-interactive {
+    pointer-events: auto;
+}
+
+.chapter-index {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--amber);
+    margin-bottom: 0.65rem;
+    display: block;
+}
+
+.chapter-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.35rem, 4.2vw, 3.85rem);
+    line-height: 1.08;
+    color: var(--linen);
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.chapter-size {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.98rem;
+    color: var(--sage);
+    margin-bottom: 1.35rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(214, 154, 56, 0.28);
+}
+
+.chapter-sentence {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: clamp(1.05rem, 1.45vw, 1.24rem);
+    line-height: 1.68;
+    color: var(--linen-muted);
+    max-width: 38ch;
+}
+
+/* Right Column: Tall Product Frame + Floating Words & Cutouts */
+.visual-column {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-frame-shell {
+    position: relative;
+    width: min(100%, 430px);
+    height: min(74vh, 640px);
+    border-radius: 220px 220px 28px 28px;
+    padding: 10px;
+    background: linear-gradient(160deg, rgba(214, 154, 56, 0.42) 0%, rgba(239, 230, 212, 0.08) 50%, rgba(157, 179, 151, 0.22) 100%);
+    box-shadow:
+        0 32px 80px rgba(0, 0, 0, 0.68),
+        0 0 60px rgba(214, 154, 56, 0.12);
+    z-index: 12;
+}
+
+.product-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 212px 212px 20px 20px;
+    overflow: hidden;
+    background-color: #1A241D;
+}
+
+.product-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.product-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Subtle warm inner glass rim on the frame */
+.product-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 36px rgba(18, 27, 21, 0.45);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Floating Parallax Field around the Bottle */
+.parallax-field {
+    position: absolute;
+    inset: -6% -10%;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.chapter-parallax-group {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.floating-item {
+    position: absolute;
+    left: var(--x, 50%);
+    top: var(--y, 50%);
+    transform: translate3d(-50%, 0, 0);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    will-change: transform, opacity;
+}
+
+.floating-word {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.18rem, 1.85vw, 1.62rem);
+    color: var(--linen);
+    white-space: nowrap;
+    padding: 0.28rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(18, 27, 21, 0.68);
+    border: 1px solid rgba(214, 154, 56, 0.32);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.01em;
+}
+
+.floating-cutout {
+    width: var(--size, 48px);
+    height: var(--size, 48px);
+    object-fit: contain;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+    flex-shrink: 0;
+}
+
+/* Standalone botanical cutout drifters */
+.floating-cutout-only {
+    position: absolute;
+    left: var(--x, 50%);
+    top: var(--y, 50%);
+    width: var(--size, 68px);
+    height: var(--size, 68px);
+    object-fit: contain;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
+    will-change: transform, opacity;
+    opacity: 0.88;
+}

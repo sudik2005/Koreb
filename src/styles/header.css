@@ -1,0 +1,74 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/header.css
+ * Floating header bar, mini brand mark, navigation links, and golden-light overlay.
+ */
+
+/* Top Minimal Navigation Bar */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 3rem;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(18, 27, 21, 0.72) 0%, rgba(18, 27, 21, 0) 100%);
+}
+
+.site-header a,
+.site-header button {
+    pointer-events: auto;
+}
+
+.brand-mini {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--linen);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.brand-mini.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.header-link {
+    color: var(--linen-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.25s ease;
+}
+
+.header-link:hover {
+    color: var(--amber);
+}
+
+/* Soft Golden-Light Texture Overlay for Section Transitions */
+.golden-light-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 35;
+    mix-blend-mode: screen;
+    opacity: 0.22;
+    background:
+        radial-gradient(110% 70% at 80% 15%, rgba(214, 154, 56, 0.16) 0%, transparent 60%),
+        radial-gradient(90% 80% at 15% 85%, rgba(157, 179, 151, 0.08) 0%, transparent 65%);
+    transition: opacity 0.6s ease;
+}

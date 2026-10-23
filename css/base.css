@@ -1,0 +1,86 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/base.css
+ * Core design tokens, CSS reset, typography, base styles, focus accessibility, and skip link.
+ */
+
+:root {
+    --rosemary-night: #121B15;
+    --linen: #EFE6D4;
+    --linen-muted: rgba(239, 230, 212, 0.76);
+    --linen-subtle: rgba(239, 230, 212, 0.48);
+    --amber: #D69A38;
+    --amber-soft: rgba(214, 154, 56, 0.25);
+    --sage: #9DB397;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Chapter radial glow palette derived from each product photo */
+    --glow-ch1: #4A2E1B;
+    /* Warm wood & amber glass */
+    --glow-ch2: #523039;
+    /* Dusty rose & frankincense resin */
+    --glow-ch3: #573E16;
+    /* Golden oil, turmeric & warm spice */
+    --glow-ch4: #5E3B1A;
+    /* Sunlit amber glass & warm window light */
+    --glow-ch5: #293B22;
+    /* Sun-dappled castor leaf green & earth */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: var(--rosemary-night);
+    color: var(--linen);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--rosemary-night);
+    color: var(--linen);
+    overflow-x: hidden;
+    selection-background-color: var(--amber);
+}
+
+::selection {
+    background: rgba(214, 154, 56, 0.35);
+    color: var(--linen);
+}
+
+/* Keyboard focus accessibility */
+:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Skip link for screen readers / keyboard users */
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 24px;
+    z-index: 9999;
+    background: var(--amber);
+    color: var(--rosemary-night);
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 20px;
+}

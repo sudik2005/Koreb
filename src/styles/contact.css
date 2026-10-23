@@ -1,0 +1,115 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/contact.css
+ * Contact apothecary card, Instagram direct-order call-to-action, and footer.
+ */
+
+/* ==========================================================================
+   3. CONTACT & FOOTER SECTION
+   ========================================================================== */
+.contact-section {
+    position: relative;
+    z-index: 20;
+    padding: 8.5rem 2rem 5rem;
+    background:
+        radial-gradient(70% 65% at 50% 35%, rgba(74, 46, 27, 0.36) 0%, rgba(18, 27, 21, 0.98) 75%),
+        var(--rosemary-night);
+    border-top: 1px solid rgba(214, 154, 56, 0.16);
+}
+
+.contact-card {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3.75rem 2.75rem;
+    border-radius: 28px;
+    background: rgba(24, 35, 28, 0.68);
+    border: 1px solid rgba(214, 154, 56, 0.25);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+}
+
+.contact-eyebrow {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--amber);
+    margin-bottom: 0.6rem;
+}
+
+.contact-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.12;
+    color: var(--linen);
+    margin-bottom: 1.15rem;
+}
+
+.contact-body {
+    font-size: 1.12rem;
+    color: var(--linen-muted);
+    max-width: 44ch;
+    margin: 0 auto 2.25rem;
+}
+
+.ig-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    background: var(--amber);
+    color: var(--rosemary-night);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 12px 32px rgba(214, 154, 56, 0.32);
+}
+
+.ig-button:hover {
+    background: #e3a846;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 38px rgba(214, 154, 56, 0.45);
+}
+
+.ig-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+/* Footer */
+.site-footer {
+    max-width: 1200px;
+    margin: 5rem auto 0;
+    padding-top: 2.2rem;
+    border-top: 1px solid rgba(239, 230, 212, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    color: var(--linen-subtle);
+    font-size: 0.95rem;
+}
+
+.footer-brand {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    letter-spacing: 0.14em;
+    color: var(--linen);
+}
+
+.footer-handle {
+    color: var(--linen-muted);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.footer-handle:hover {
+    color: var(--amber);
+}

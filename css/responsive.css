@@ -1,0 +1,120 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/responsive.css
+ * Responsive breakpoints (mobile stacked layout: photo on top, text at bottom)
+ * and prefers-reduced-motion accessibility overrides.
+ */
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (Mobile: Photo on top, text at the bottom)
+   ========================================================================== */
+@media (max-width: 960px) {
+    .site-header {
+        padding: 1rem 1.5rem;
+    }
+
+    .chapter-dots {
+        left: 10px;
+        gap: 12px;
+    }
+
+    .stage-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: 54% 46%;
+        padding: 3.6rem 1.5rem 1.8rem 2.2rem;
+        gap: 1rem;
+    }
+
+    /* On phones, product photo goes on top and text at the bottom */
+    .visual-column {
+        order: 1;
+        height: 100%;
+    }
+
+    .copy-column {
+        order: 2;
+        height: 100%;
+        align-items: flex-start;
+    }
+
+    .product-frame-shell {
+        width: min(76vw, 290px);
+        height: min(44vh, 360px);
+        border-radius: 150px 150px 22px 22px;
+    }
+
+    .product-frame {
+        border-radius: 142px 142px 16px 16px;
+    }
+
+    .chapter-copy {
+        text-align: center;
+    }
+
+    .chapter-title {
+        font-size: clamp(1.85rem, 6.2vw, 2.4rem);
+        margin-bottom: 0.35rem;
+    }
+
+    .chapter-size {
+        margin-bottom: 0.65rem;
+        padding-bottom: 0.45rem;
+        font-size: 0.9rem;
+    }
+
+    .chapter-sentence {
+        margin: 0 auto;
+        font-size: 0.98rem;
+        line-height: 1.5;
+    }
+
+    .floating-word {
+        font-size: 0.96rem;
+        padding: 0.2rem 0.65rem;
+    }
+
+    .floating-cutout {
+        width: 32px;
+        height: 32px;
+    }
+
+    .floating-cutout-only {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-wordmark {
+        font-size: clamp(3.8rem, 17vw, 5.5rem);
+    }
+
+    .stage-inner {
+        padding: 3.2rem 1.1rem 1.25rem 1.6rem;
+    }
+
+    .contact-card {
+        padding: 2.5rem 1.4rem;
+    }
+}
+
+/* ==========================================================================
+   PREFERS-REDUCED-MOTION ACCESSIBILITY
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-letter {
+        animation: none !important;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+    }
+
+    .floating-item,
+    .floating-cutout-only,
+    .product-slide {
+        transition: none !important;
+    }
+}

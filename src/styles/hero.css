@@ -1,0 +1,162 @@
+/**
+ * KOREB — Natural Cosmetics
+ * css/hero.css
+ * Hero section layout, ambient video backdrop, rising letter-by-letter wordmark, and scroll cues.
+ */
+
+/* ==========================================================================
+   1. HERO SECTION
+   ========================================================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+    background-color: var(--rosemary-night);
+}
+
+.hero-media-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.58;
+    filter: saturate(1.08) contrast(1.04);
+    transform: scale(1.02);
+}
+
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        radial-gradient(circle at 50% 44%, rgba(18, 27, 21, 0.18) 0%, rgba(18, 27, 21, 0.78) 72%, #121B15 100%),
+        linear-gradient(180deg, rgba(18, 27, 21, 0.45) 0%, rgba(18, 27, 21, 0.15) 45%, rgba(18, 27, 21, 0.96) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Giant KOREB wordmark rising in letter by letter (the ONLY autoplay animation on the page) */
+.hero-wordmark {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(4.8rem, 16vw, 13.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.12em;
+    color: var(--linen);
+    display: inline-flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.08em 0.06em 0.14em 0.18em;
+    text-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+}
+
+.hero-letter {
+    display: inline-block;
+    transform: translateY(112%);
+    opacity: 0;
+    animation: riseLetter 1.25s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.hero-letter:nth-child(1) {
+    animation-delay: 0.12s;
+}
+
+.hero-letter:nth-child(2) {
+    animation-delay: 0.26s;
+}
+
+.hero-letter:nth-child(3) {
+    animation-delay: 0.40s;
+}
+
+.hero-letter:nth-child(4) {
+    animation-delay: 0.54s;
+}
+
+.hero-letter:nth-child(5) {
+    animation-delay: 0.68s;
+}
+
+@keyframes riseLetter {
+    0% {
+        transform: translateY(112%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.hero-tagline {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: clamp(1.12rem, 2.1vw, 1.48rem);
+    color: var(--linen);
+    max-width: 34ch;
+    letter-spacing: 0.015em;
+}
+
+.hero-scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--linen-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+}
+
+.hero-scroll-cue:hover {
+    color: var(--amber);
+}
+
+.hero-scroll-line {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(180deg, var(--amber) 0%, rgba(214, 154, 56, 0.08) 100%);
+}
+
+/* Section Boundary Transition Shimmer */
+.section-transition-veil {
+    position: relative;
+    height: 110px;
+    margin-top: -55px;
+    margin-bottom: -55px;
+    z-index: 25;
+    pointer-events: none;
+    background: radial-gradient(55% 50% at 50% 50%, rgba(214, 154, 56, 0.14) 0%, rgba(18, 27, 21, 0) 100%);
+}
