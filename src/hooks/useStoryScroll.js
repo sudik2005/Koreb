@@ -61,6 +61,18 @@ export function useStoryScroll({
     });
     videoControllersRef.current = controllers;
 
+    const parallaxItems = parallaxRefs.current.map((groupEl) =>
+      groupEl
+        ? Array.from(groupEl.querySelectorAll('[data-speed]')).map((el) => ({
+            el,
+            speed: parseFloat(el.getAttribute('data-speed') || '1'),
+            threshold: parseFloat(el.getAttribute('data-threshold') || '0')
+          }))
+        : []
+    );
+    const lastWeights = new Array(chapterCount).fill(-1);
+    let lastHeaderVisible = null;
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function updateStoryOnFrame() {
@@ -74,16 +86,23 @@ export function useStoryScroll({
 
       // 1. Toggle mini KOREB brand in header once past hero wordmark
       const headerBrand = headerBrandRef?.current || document.getElementById('headerBrand');
-      if (headerBrand) {
-        if (scrollY > viewportH * 0.55) {
-          headerBrand.classList.add('is-visible');
-        } else {
-          headerBrand.classList.remove('is-visible');
+      const headerVisible = scrollY > viewportH * 0.55;
+      if (headerBrand && headerVisible !== lastHeaderVisible) {
+        lastHeaderVisible = headerVisible;
+        headerBrand.classList.toggle('is-visible', headerVisible);
+      }
+
+      // Nothing to update while the story is far off-screen (hero or contact section)
+      const rect = trackEl.getBoundingClientRect();
+      if (rect.top > viewportH || rect.bottom < 0) {
+        if (lastWeights.some((w) => w !== -2)) {
+          videoControllersRef.current.forEach((ctrl) => ctrl?.pause());
+          lastWeights.fill(-2);
         }
+        return;
       }
 
       // 2. Calculate normalized progress [0..1] inside the 500vh story track
-      const rect = trackEl.getBoundingClientRect();
       const scrollableDistance = Math.max(1, rect.height - viewportH);
       const rawProgress = -rect.top / scrollableDistance;
       const progress = clamp(rawProgress, 0, 1);
@@ -120,6 +139,10 @@ export function useStoryScroll({
         }
 
         weight = clamp(weight, 0, 1);
+
+        // Hidden chapters that were already hidden need no DOM writes
+        if (weight === 0 && lastWeights[i] === 0) continue;
+        lastWeights[i] = weight;
 
         // 2a. Background radial glow crossfade
         const glowEl = glowRefs.current[i];
@@ -165,13 +188,9 @@ export function useStoryScroll({
         if (parallaxEl) {
           parallaxEl.style.opacity = weight.toFixed(3);
           if (weight > 0.01) {
-            const items = parallaxEl.querySelectorAll('[data-speed]');
             const localP = i === currentIdx ? chapterLocalProgress : (i < currentIdx ? 1 : 0);
 
-            items.forEach((item) => {
-              const speed = parseFloat(item.getAttribute('data-speed') || '1');
-              const threshold = parseFloat(item.getAttribute('data-threshold') || '0');
-
+            parallaxItems[i].forEach(({ el, speed, threshold }) => {
               const itemReveal = reduced
                 ? 1
                 : clamp((localP - threshold * 0.65) / 0.22, 0, 1);
@@ -180,8 +199,8 @@ export function useStoryScroll({
                 ? 0
                 : (0.5 - localP) * 95 * speed;
 
-              item.style.opacity = (itemReveal * weight).toFixed(3);
-              item.style.transform = `translate3d(-50%, ${driftY.toFixed(1)}px, 0)`;
+              el.style.opacity = (itemReveal * weight).toFixed(3);
+              el.style.transform = `translate3d(-50%, ${driftY.toFixed(1)}px, 0)`;
             });
           }
         }

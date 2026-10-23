@@ -12,6 +12,10 @@ export function createProceduralVideoController(videoEl, sceneType) {
   if (!videoEl) return null;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Phones can't afford live canvas streams; they keep the static synthesized poster.
+  const isLowPower = window.matchMedia('(max-width: 960px), (pointer: coarse)').matches;
+  const FRAME_INTERVAL = 1000 / 24;
+  let lastDraw = 0;
   const canvas = document.createElement('canvas');
   canvas.width = 640;
   canvas.height = 360;
@@ -189,7 +193,10 @@ export function createProceduralVideoController(videoEl, sceneType) {
 
   function tick(now) {
     if (!isRunning || isDisposed) return;
-    drawFrame(now);
+    if (now - lastDraw >= FRAME_INTERVAL) {
+      lastDraw = now;
+      drawFrame(now);
+    }
     animId = requestAnimationFrame(tick);
   }
 
@@ -231,17 +238,15 @@ export function createProceduralVideoController(videoEl, sceneType) {
 
   return {
     play() {
-      if (prefersReducedMotion.matches || isDisposed) return;
+      if (prefersReducedMotion.matches || isDisposed || isLowPower || isRunning) return;
 
       if (!realSourceAvailable && (!videoEl.currentSrc || videoEl.networkState === HTMLMediaElement.NETWORK_NO_SOURCE)) {
         attachStreamIfNeeded();
       }
 
-      if (!isRunning) {
-        isRunning = true;
-        startTime = performance.now();
-        animId = requestAnimationFrame(tick);
-      }
+      isRunning = true;
+      startTime = performance.now();
+      animId = requestAnimationFrame(tick);
 
       const playPromise = videoEl.play();
       if (playPromise && typeof playPromise.catch === 'function') {
@@ -258,11 +263,10 @@ export function createProceduralVideoController(videoEl, sceneType) {
       }
     },
     pause() {
-      if (isRunning) {
-        isRunning = false;
-        if (animId) cancelAnimationFrame(animId);
-        animId = null;
-      }
+      if (!isRunning && videoEl.paused) return;
+      isRunning = false;
+      if (animId) cancelAnimationFrame(animId);
+      animId = null;
       try {
         videoEl.pause();
       } catch (e) { }
