@@ -23,6 +23,12 @@ export default function ChapterCopy({ chapters, copyRefs }) {
             <h2 className="chapter-title">{ch.title}</h2>
             <span className="chapter-size">{ch.size}</span>
             <p className="chapter-sentence">{ch.sentence}</p>
+            {ch.importance && (
+              <div className="chapter-importance">
+                <span className="chapter-importance-label">Why it&apos;s essential</span>
+                <p className="chapter-importance-text">{ch.importance}</p>
+              </div>
+            )}
           </article>
         );
       })}

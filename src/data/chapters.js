@@ -12,6 +12,7 @@ export const CHAPTERS = [
     title: 'Rosemary strengthening hair oil',
     size: '100 ml / 3.4 fl oz',
     sentence: 'Infused with fresh rosemary in an amber glass dropper bottle for daily scalp and strand care.',
+    importance: 'Awakens dormant follicles, stimulates scalp micro-circulation, and fortifies roots to curb hair fall and foster resilient, thicker growth.',
     dotLabel: 'Jump to Rosemary strengthening hair oil',
     productImage: {
       id: 'prodImg0',
@@ -42,12 +43,13 @@ export const CHAPTERS = [
     title: 'Natural face cream',
     size: 'Small-batch apothecary jar',
     sentence: 'A rich, comforting cream crafted with aromatic tree resins to keep skin soft and supple.',
+    importance: 'Shields skin with rare aromatic tree resins (Boswellia), sealing in deep hydration and defending against moisture loss and environmental fatigue.',
     dotLabel: 'Jump to Natural face cream',
     productImage: {
       id: 'prodImg1',
       src: 'assets/images/products/2-face-cream.jpg',
       alt: 'KOREB Natural face cream in white-lidded jars with dusty rose labels arranged on travertine stone with golden resin tears beneath a Boswellia tree.',
-      retouchType: 'cream',
+      retouchType: null,
       loading: 'lazy'
     },
     media: {
@@ -70,6 +72,7 @@ export const CHAPTERS = [
     title: 'Natural hair oil',
     size: '330 g',
     sentence: 'Twelve whole seeds, roots, oils, and warm spices cold-infused into a golden conditioning oil.',
+    importance: 'Delivers intensive whole-botanical restoration to replenish dry scalp, repair split ends, and rebuild damaged hair cuticles from within.',
     dotLabel: 'Jump to Natural hair oil',
     productImage: {
       id: 'prodImg2',
@@ -108,6 +111,7 @@ export const CHAPTERS = [
     title: 'Face oil',
     size: '100 ml / 3.4 fl oz',
     sentence: 'An organic and nourishing revitalizing blend in amber glass that leaves skin calm and luminous.',
+    importance: 'Restores the skin’s natural lipid barrier with concentrated antioxidants, calming sensitivity and unveiling a soft, luminous golden glow.',
     dotLabel: 'Jump to Face oil',
     productImage: {
       id: 'prodImg3',
@@ -136,6 +140,7 @@ export const CHAPTERS = [
     title: 'Organic castor oil',
     size: 'Squeeze bottle',
     sentence: 'Pure cold-pressed castor bean oil for deep hydration, strength and shine, frizz control, and growth boost.',
+    importance: 'Acts as a dense, ricinoleic humectant that locks in maximum moisture, controls stubborn frizz, and visibly boosts hair, lash, and brow density.',
     dotLabel: 'Jump to Organic castor oil',
     productImage: {
       id: 'prodImg4',

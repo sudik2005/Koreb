@@ -20,9 +20,9 @@
 
     .stage-inner {
         grid-template-columns: 1fr;
-        grid-template-rows: 54% 46%;
-        padding: 3.6rem 1.5rem 1.8rem 2.2rem;
-        gap: 1rem;
+        grid-template-rows: 46% 54%;
+        padding: 3.4rem 1.4rem 1.6rem 2.2rem;
+        gap: 0.75rem;
     }
 
     /* On phones, product photo goes on top and text at the bottom */
@@ -38,13 +38,13 @@
     }
 
     .product-frame-shell {
-        width: min(76vw, 290px);
-        height: min(44vh, 360px);
-        border-radius: 150px 150px 22px 22px;
+        width: min(72vw, 270px);
+        height: min(40vh, 320px);
+        border-radius: 140px 140px 20px 20px;
     }
 
     .product-frame {
-        border-radius: 142px 142px 16px 16px;
+        border-radius: 132px 132px 14px 14px;
     }
 
     .chapter-copy {
@@ -52,20 +52,37 @@
     }
 
     .chapter-title {
-        font-size: clamp(1.85rem, 6.2vw, 2.4rem);
-        margin-bottom: 0.35rem;
+        font-size: clamp(1.75rem, 5.8vw, 2.2rem);
+        margin-bottom: 0.25rem;
     }
 
     .chapter-size {
-        margin-bottom: 0.65rem;
-        padding-bottom: 0.45rem;
-        font-size: 0.9rem;
+        margin-bottom: 0.45rem;
+        padding-bottom: 0.35rem;
+        font-size: 0.88rem;
     }
 
     .chapter-sentence {
         margin: 0 auto;
-        font-size: 0.98rem;
-        line-height: 1.5;
+        font-size: 0.92rem;
+        line-height: 1.45;
+    }
+
+    .chapter-importance {
+        margin: 0.65rem auto 0;
+        text-align: left;
+        max-width: 36ch;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .chapter-importance-label {
+        font-size: 0.66rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .chapter-importance-text {
+        font-size: 0.85rem;
+        line-height: 1.4;
     }
 
     .floating-word {
