@@ -12,8 +12,8 @@
     --amber: #D69A38;
     --amber-soft: rgba(214, 154, 56, 0.25);
     --sage: #9DB397;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Cormorant Garamond', 'Noto Serif Ethiopic', Georgia, serif;
+    --font-sans: 'Jost', 'Noto Sans Ethiopic', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Chapter radial glow palette derived from each product photo */
     --glow-ch1: #4A2E1B;
@@ -26,6 +26,11 @@
     /* Sunlit amber glass & warm window light */
     --glow-ch5: #293B22;
     /* Sun-dappled castor leaf green & earth */
+}
+
+html[lang="am"] {
+    --font-serif: 'Noto Serif Ethiopic', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Noto Sans Ethiopic', 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 *,

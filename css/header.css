@@ -59,6 +59,44 @@
     color: var(--amber);
 }
 
+/* Language Switcher Toggle */
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    background: rgba(239, 230, 212, 0.08);
+    border: 1px solid rgba(214, 154, 56, 0.35);
+    border-radius: 999px;
+    color: var(--linen-muted);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.lang-toggle-btn:hover {
+    background: rgba(214, 154, 56, 0.18);
+    border-color: var(--amber);
+    color: var(--linen);
+}
+
+.lang-label {
+    transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.lang-label.is-active {
+    color: var(--amber);
+    font-weight: 500;
+}
+
+.lang-sep {
+    opacity: 0.4;
+    font-size: 0.75rem;
+}
+
 /* Soft Golden-Light Texture Overlay for Section Transitions */
 .golden-light-overlay {
     position: fixed;

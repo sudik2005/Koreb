@@ -3,15 +3,18 @@
  * src/components/Hero.jsx
  * Fullscreen hero section with letter-by-letter rising wordmark,
  * procedural video loop with real-media fallback, and scroll cue.
+ * Translated with Amharic / English support.
  */
 
 import React, { useRef } from 'react';
 import { useHeroVideo } from '../hooks/useHeroVideo';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/hero.css';
 
 export default function Hero() {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
+  const { t } = useLanguage();
 
   useHeroVideo(videoRef, sectionRef);
 
@@ -49,11 +52,11 @@ export default function Hero() {
             <span className="hero-letter" aria-hidden="true">E</span>
             <span className="hero-letter" aria-hidden="true">B</span>
           </h1>
-          <p className="hero-tagline">Natural oils and creams for your hair and skin.</p>
+          <p className="hero-tagline">{t('heroTagline')}</p>
         </div>
 
         <a href="#range-story" className="hero-scroll-cue">
-          <span>Scroll to meet the range</span>
+          <span>{t('heroScrollCue')}</span>
           <span className="hero-scroll-line" aria-hidden="true"></span>
         </a>
       </section>
